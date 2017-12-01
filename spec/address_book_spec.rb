@@ -32,7 +32,7 @@ RSpec.describe "AddressBook" do
         end
     end
 
-    describe "#import_from_csv" do
+    describe "#import_from_csv (using entries.csv)" do
         it "imports the correct number of entries" do
             book.import_from_csv("entries.csv") #call the actual method
             book_size = book.entries.size #following import method check size of entries array
@@ -49,27 +49,55 @@ RSpec.describe "AddressBook" do
             entry_two = book.entries[1]
             
             check_entry(entry_two, "Bob", "555-555-5415", "bob@blocmail.com")
-          end
+        end
       
-          it "imports the 3rd entry" do
+        it "imports the 3rd entry" do
             book.import_from_csv("entries.csv")
             entry_three = book.entries[2]
             
             check_entry(entry_three, "Joe", "555-555-3660", "joe@blocmail.com")
-          end
+        end
       
-          it "imports the 4th entry" do
+        it "imports the 4th entry" do
             book.import_from_csv("entries.csv")
             entry_four = book.entries[3]
             
             check_entry(entry_four, "Sally", "555-555-4646", "sally@blocmail.com")
-          end
+        end
       
-          it "imports the 5th entry" do
+        it "imports the 5th entry" do
             book.import_from_csv("entries.csv")
             entry_five = book.entries[4]
             
             check_entry(entry_five, "Sussie", "555-555-2036", "sussie@blocmail.com")
-          end
+        end
+    end
+
+        
+    describe "#import_from_csv (using entries_2.csv)" do
+        it "imports the correct number of entries" do
+            book.import_from_csv("entries_2.csv")
+            book_size = book.entries.size 
+            expect(book_size).to eq(3) 
+        end
+        it "imports the first entry" do
+            book.import_from_csv("entries_2.csv")
+            entry_one = book.entries[0]
+
+            check_entry(entry_one, "Adam", "555-555-4854", "Sami@blocmail.com")
+        end
+        it "imports the 2nd entry" do
+            book.import_from_csv("entries_2.csv")
+            entry_two = book.entries[1]
+            
+            check_entry(entry_two, "Mike", "555-555-5415", "mike@blocmail.com")
+        end
+      
+        it "imports the 3rd entry" do
+            book.import_from_csv("entries_2.csv")
+            entry_three = book.entries[2]
+            
+            check_entry(entry_three, "Papa", "555-555-3660", "joe@blocmail.com")
+        end
     end
 end
