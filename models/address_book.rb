@@ -51,4 +51,9 @@ class AddressBook
         end
         return nil #after the while loop if never find name or initially we never entered the while loop becuase entries had no entry in there
     end
+
+    def iterative_search(name)
+        entries.each {|entry| return entry if name == entry.name}
+        nil
+    end
 end
