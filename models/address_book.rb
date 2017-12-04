@@ -31,4 +31,24 @@ class AddressBook
             add_entry(row_hash["name"], row_hash["phone_number"], row_hash["email"]) #access that rows hash through key which is our headers in our csv file       
         end
     end
+
+    def binary_search(name) #returns an object in entry based off name
+        #search boundaries
+        lower = 0 #start of array - after search lower + end will be defined off the middle index
+        upper = entries.length-1 #end of array
+
+        while lower<=upper #make sure search is only conducted whilst there is at least something in the array
+            mid = (lower + upper) / 2 #find middle index - always recalcualted at beginning of each loop - Ruby automaticall rounds down
+            mid_name = entries[mid].name #get the name at that middle index
+
+            if name == mid_name #we have found our name
+                return entries[mid] #return that entry object
+            elsif name < mid_name #compare alpahbetically that name comes before the middle name in the array
+                upper = mid-1 #make the top of my array search only upto less than the middle index
+            elsif name > mid_name #name ahead alphabetically
+                lower = mid+1
+            end
+        end
+        return nil #after the while loop if never find name or initially we never entered the while loop becuase entries had no entry in there
+    end
 end

@@ -72,4 +72,53 @@ RSpec.describe "AddressBook" do
             check_entry(entry_five, "Sussie", "555-555-2036", "sussie@blocmail.com")
           end
     end
+
+    describe "#binary_search" do
+        it "searches our addressbook (entries array) for a non-existent entry object" do
+            book.import_from_csv("entries.csv") #adds 5 entry objects to entries array
+            entry = book.binary_search("Dan") #if i was to search for Dan
+            expect(entry).to be_nil
+        end
+        
+        it "searches address book for Bill" do
+            book.import_from_csv("entries.csv") #adds 5 entry objects to entries array
+            entry = book.binary_search("Bill") #makes that search for the object Bill in our entry array
+            expect(entry).to be_a(Entry) #first thing we expect is that the entry returned will be an object of the class type Entry
+            check_entry(entry, "Bill", "555-555-4854", "bill@blocmail.com")# 3 EXPECTS IN HERE - check the object that we got held in entry, really equates to the Bill object
+        end
+
+        it "searches AddressBook for Bob" do
+            book.import_from_csv("entries.csv")
+            entry = book.binary_search("Bob")
+            expect(entry).to be_a Entry
+            check_entry(entry, "Bob", "555-555-5415", "bob@blocmail.com")
+        end
+      
+        it "searches AddressBook for Joe" do
+            book.import_from_csv("entries.csv")
+            entry = book.binary_search("Joe")
+            expect(entry).to be_a Entry
+            check_entry(entry, "Joe", "555-555-3660", "joe@blocmail.com")
+        end
+      
+        it "searches AddressBook for Sally" do
+            book.import_from_csv("entries.csv")
+            entry = book.binary_search("Sally")
+            expect(entry).to be_a Entry
+            check_entry(entry, "Sally", "555-555-4646", "sally@blocmail.com")
+        end
+      
+        it "searches AddressBook for Sussie" do
+            book.import_from_csv("entries.csv")
+            entry = book.binary_search("Sussie")
+            expect(entry).to be_a Entry
+            check_entry(entry, "Sussie", "555-555-2036", "sussie@blocmail.com")
+        end
+
+        it "searches AddressBook for Billy" do
+            book.import_from_csv("entries.csv")
+            entry = book.binary_search("Billy")
+            expect(entry).to be_nil
+        end
+    end
 end
