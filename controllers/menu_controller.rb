@@ -14,7 +14,8 @@ class MenuController
         puts "2 - Create an entry"
         puts "3 - Search for an entry"
         puts "4 - Import entries from a CSV"
-        puts "5 - Exit"
+        puts "5 - Nuke Your Address Book"
+        puts "6 - Exit"
         print "\nEnter your selection: "
 
         #retrieve the selection
@@ -38,7 +39,11 @@ class MenuController
                 system "clear"
                 read_CSV
                 main_menu
-            when 5 #exit
+            when 5 #nuke the address book
+                system "clear"
+                delete_all_entries
+                main_menu
+            when 6 #exit
                 puts "Good Bye!"
                 exit(0) #exits the ruby script but raises a SystemExit error 0 indicates there is no error here
             else
@@ -188,5 +193,13 @@ class MenuController
 
         puts "Updated Entry:"
         puts entry
+    end
+
+    def delete_all_entries
+        puts "you currently have ##{address_book.entries.size} entries in your address book"
+        puts "LAUNCHING NUKE..."
+        address_book.entries.clear
+        puts "Nuke Successful :)"
+        puts "Their are now ##{address_book.entries.size} entries in your address book"
     end
 end
